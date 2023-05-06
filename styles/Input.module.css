@@ -1,0 +1,23 @@
+  .select {
+      outline: none;
+      -webkit-appearance: none;
+      appearance: none;
+      -moz-appearance: none;
+      background-image: url('/icons/select-arrow.svg');
+      background-repeat: no-repeat;
+      background-position-x: 100%;
+      background-position-y: 8px;
+      border: 1px solid #493C6E;
+  }
+
+  .select2 {
+      outline: none;
+      -webkit-appearance: none;
+      appearance: none;
+      -moz-appearance: none;
+      background-image: url('/icons/select-arrow.svg');
+      background-repeat: no-repeat;
+      background-position-x: 100%;
+      background-position-y: 50%;
+      /* border-bottom: 1px solid #493C6E; */
+  }

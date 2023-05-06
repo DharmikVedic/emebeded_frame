@@ -2,26 +2,117 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+
+/* :root{
+  --primary: #fff;
+  --secondary: #e0e7ff;
+  --paragraph:#52525b;
+  --heading:#27272a;
+  --hightlight:#4f46e5;
+  --darkprimary: #232526;
+    --darksecondary: #D9B08C;
+    --darkparagraph: #d4d4d8;
+    --darkheading: #fff;
+    --darkhightlight: #2B2D42;
+} */
+
+
+@layer base {
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,h6 {
+    @apply font-spectral;
+  }
+
+  h1{
+    @apply font-bold;
+  }
+
+     h2,h3 {
+       @apply font-semibold;
+     }
+
+            h4, h5 {
+              @apply font-medium;
+            }
+                        .inputbox label{
+                          @apply dark:text-darkheading text-heading;
+                        }
+
+                                                .bottom_border {
+                                                
+                                                                      @apply dark:border-zinc-500 border-zinc-300 dark:text-darkparagraph text-paragraph;
+                                                }
+
+.bottom_border:focus{
+  @apply dark:border-darksecondary border-indigo-400;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+
+  @font-face {
+    font-family: "zodiac";
+    font-style: normal;
+    font-display: swap;
+    font-weight: normal;
+    src: url("../public/fonts/zodiac.ttf");
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+.bottom_border {
+  outline: none;
+  width: 100%;
+  border-bottom: 1px solid #493C6E;
+  padding: 10px 5px;
+  background: transparent;
 }
+
+.form-control {
+  background-color: transparent;
+  /*border: 2px solid #a3a3a3;*/
+  border-radius: 7px;
+  color: currentColor;
+  padding: 10px 10px;
+  width: 100%;
+}
+
+.form-control::placeholder {
+  color: currentColor;
+}
+
+.form-control:focus {
+  outline: none;
+}
+
+.rbt-menu {
+  z-index: 10;
+}
+
+.inputbox {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+}
+
+.inputbox label {
+  /*width: 100%;*/
+  font-family: "Spectral, sans-serif";
+  font-size: 17px;
+}
+
+    .switcher:checked+.toggle-bg:after {
+      transform: translateX(100%);
+      @apply border-white;
+    }
+  
+    .switcher:checked+.toggle-bg {
+      @apply bg-blue-600 border-blue-600;
+    }
+  
+    .toggle-bg:after {
+      content: '';
+      @apply absolute top-0.5 left-0.5 bg-white border border-gray-300 rounded-full h-5 w-5 transition shadow-sm;
+    }
