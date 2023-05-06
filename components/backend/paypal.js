@@ -2,10 +2,8 @@
 const base_url = "https://api-m.sandbox.paypal.com/v2";
 import { v4 as uuidv4 } from "uuid";
 
-const CLIENT_ID =
-  "AdNITJj1ejfo3qmN6q1l2n6aAechI97WlhNdrpH4auawcLKaKeaMvvcZScfsRDG0lFcZ6NfCb-D_0dZh";
-const CLIENT_SECRET =
-  "EECh50_arpU4bA1wVl17jxTXIX1wj46-Z-LoNJKUIOcUNiTy7ZQhLcyJxoQhNfWmMTyrGj7A7n_TfHQg";
+const CLIENT_ID = process.env.PAYPAL_CLIENT_ID;
+const CLIENT_SECRET = process.env.PAYPAL_CLIENT_SECRET;
 
 // const headers = {
 //   "Content-Type": "application/json",
@@ -54,8 +52,8 @@ async function createOrder(CLIENT_ID, CLIENT_SECRET, orderId) {
               landing_page: "LOGIN",
               // shipping_preference: "SET_PROVIDED_ADDRESS",
               user_action: "PAY_NOW",
-              return_url: `https://www.example.com/birth-thank-you?oid=${orderId}`,
-              cancel_url: "https://www.example.com/birth-error",
+              return_url: `https://emebeded-frame.vercel.app/birth-thank-you?oid=${orderId}`,
+              cancel_url: "https://emebeded-frame.vercel.app/birth-error",
             },
           },
         },

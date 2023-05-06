@@ -1,11 +1,9 @@
 // const SEND_GRID =
 //   "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";
 
-const SEND_GRID_ASTROPAGES =
-  "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";
+const SEND_GRID_ASTROPAGES = process.env.SEND_GRID_ID;
 
 export default async function sendEmail(data) {
-  console.log(data);
 
   const email = data?.email_id;
   const text = `Thank you for shopping with us your order id id ${data?.order_id}`;

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Link from "next/link";
 import Head from "next/head";
 import { useRouter } from "next/router";
 
@@ -31,7 +30,6 @@ export default function NatalThankYou() {
     });
     const resStatus = await res.json();
     setLoader(false);
-    console.log(resStatus);
     // if (resStatus?.response?.status) {
     //   await router.push(resStatus?.response?.url);
     // }

@@ -29,7 +29,6 @@ export default function Payment() {
     });
     const resStatus = await res.json();
     setLoader(false);
-    console.log(resStatus);
     if (resStatus?.response?.status) {
       await router.push(resStatus?.response?.url);
     }
