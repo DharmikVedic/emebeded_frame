@@ -6,6 +6,8 @@ export default function NatalThankYou() {
   const [orderId, setOrderId] = useState(null);
   const [loader, setLoader] = useState(false);
   const router = useRouter();
+  const [response, setresponse] = useState({});
+
   useEffect(() => {
     const { asPath } = router;
     const query = new URLSearchParams(asPath.split("?")[1]);
@@ -30,9 +32,9 @@ export default function NatalThankYou() {
     });
     const resStatus = await res.json();
     setLoader(false);
-    // if (resStatus?.response?.status) {
-    //   await router.push(resStatus?.response?.url);
-    // }
+    if (resStatus?.response?.status) {
+      setresponse({ pdf_url: resStatus?.response?.pdf_url });
+    }
   };
 
   return (
@@ -55,16 +57,19 @@ export default function NatalThankYou() {
             <p style={{ lineHeight: 1.7 }} className="md:text-lg text-zinc-700">
               Thank you for purchasing the Personalised Natal PDF. You shall
               receive the mail containing the PDF link on the provided email
-              address shortly. In case not received mail within an 24 hour, then
-              writes us at <b className="font-cera_medium">abc@gmail.com</b> or
-              contact us from{" "}
-              <a
-                className="text-sky-400 border-b-[2px] pb-[1px] border-sky-400 "
-                href="#"
-              >
-                here
-              </a>
-              . Also, do check your spam folder once, it might land there.
+              address shortly.{" "}
+              {response?.pdf_url && (
+                <>
+                  Or you can directly download the PDF from the link{" "}
+                  <a
+                    className="text-sky-400 border-b-[2px] pb-[1px] border-sky-400 "
+                    href={response?.pdf_url ? response?.pdf_url : "#"}
+                  >
+                    here
+                  </a>
+                </>
+              )}
+              .
             </p>
             <p style={{ lineHeight: 1.7 }} className="md:text-lg ">
               P.S. The email shall arrive from{" "}
