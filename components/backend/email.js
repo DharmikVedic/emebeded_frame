@@ -13,7 +13,7 @@ export default async function sendEmail(data) {
     from: "dharmik.rathod@vedicrishiastro.com", // Change to your verified sender
     subject: "Thank you for shopping with us",
     text: text,
-    // html: "<strong>and easy to do anywhere, even with Node.js</strong>",
+    html: `<a href=${data?.pdf_url}">Click here to download the PDF</a><br/><br/><strong>Warning: the download link is valid only for 7 days. Beyond that, your PDF file will be deleted.</strong>`,
   };
   sgMail
     .send(msg)
