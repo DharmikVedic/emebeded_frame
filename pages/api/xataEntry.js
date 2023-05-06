@@ -41,6 +41,7 @@ export default async function XataIntegrate(req, res) {
           }
         );
         response = {
+          status: true,
           ...updateXataEntry,
           url: payment.links[1].href,
         };
