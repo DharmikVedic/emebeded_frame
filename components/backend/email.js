@@ -1,6 +1,3 @@
-// const SEND_GRID =
-//   "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";
-
 const SEND_GRID_ASTROPAGES = process.env.SEND_GRID_ID;
 
 export default async function sendEmail(data) {
