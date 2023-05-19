@@ -3,7 +3,7 @@ import { DynamicText, Paragraph } from "../utils/dynamicText";
 import CommonInput from "../forms/form1";
 import DarkModeSwitcher from "../darkModeSwitcher";
 
-export default function CommonForm({ jsonData, handleData, userData }) {
+export default function CommonForm({ jsonData, handleData, userData, loader }) {
   const initialvalue = {
     name: "",
     day: "",
@@ -44,6 +44,7 @@ export default function CommonForm({ jsonData, handleData, userData }) {
           />
           <div className={`w-full mt-3`}>
             <CommonInput
+              loader={loader}
               // solar={solar}
               // transit={transit}
               label={true}

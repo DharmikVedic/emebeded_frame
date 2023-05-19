@@ -90,7 +90,7 @@ export default function Sample(props) {
             options={options}
             placeholder="Type Birth City/District"
             renderMenuItemChildren={(option, props) => (
-              <div className="bg-white w-full border-b  border-gray-300">
+              <div className="bg-white w-full border border-gray-300">
                 <p className="flex text-zinc-800 text-sm cursor-pointer py-2.5 px-2  gap-x-2 items-center hover:bg-hightlight/20">
                   <span>
                     <svg

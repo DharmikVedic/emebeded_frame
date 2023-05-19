@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { FetchApi } from "../utils/fetchAPI";
 import dynamic from "next/dynamic";
 import { Error } from "../utils/error";
+import { FetchApi } from "../utils/fetchAPI";
 const style = require("../../styles/Input.module.css");
 const DynamicSample = dynamic(() => import("../forms/typehead"), {
   loading: () => "",
@@ -84,7 +84,7 @@ export default function CommonInput(props) {
           date: date,
         },
       });
-      return timezone.response.timezone;
+      return timezone.timezone;
     } else {
       return 5.5;
     }
@@ -408,7 +408,11 @@ export default function CommonInput(props) {
             type="submit"
             className={`w-full capitalize font-medium cursor-pointer text-[16px] rounded px-10 py-3.5  bg-hightlight duration-100 ease-in text-white mt-3 md:float-right hover:scale-[1.02] `}
           >
-            {props.btn ?? props.formKeys.btn}
+            {props.loader ? (
+              <LoginLoader />
+            ) : (
+              <>{props.btn ?? props.formKeys.btn} </>
+            )}
           </button>
         </div>
       </form>

@@ -4,12 +4,7 @@ import { CommonConfirm } from "../natalChart/utils";
 import { Error } from "../utils/error";
 import { LoginLoader } from "../utils/loader";
 
-export default function PurchaseCard1({
-  loader,
-  content,
-  userDetail,
-  passData,
-}) {
+export default function PurchaseCard1({ loader, userDetail, passData }) {
   const data = {
     content: {
       title: "Unlock Premium Natal Report",
@@ -216,7 +211,7 @@ export default function PurchaseCard1({
 
               <div className="w-full pb-10  border-2 border-dark/50 px-5 pt-8 md:px-10 md:pt-10 rounded-[50px]">
                 <h5 className="font-medium md:text-2xl text-xl mb-5 border-b pb-3 border-dark/50   ">
-                  Confirm Your Bitrh Detail
+                  Confirm Your Birth Detail
                 </h5>
                 <CommonConfirm userDetail={userDetail} />
                 {/* <form onSubmit={handlePassData}> */}

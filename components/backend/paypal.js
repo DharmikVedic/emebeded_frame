@@ -1,15 +1,8 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 const base_url = "https://api-m.sandbox.paypal.com/v2";
 import { v4 as uuidv4 } from "uuid";
 
 const CLIENT_ID = process.env.PAYPAL_CLIENT_ID;
 const CLIENT_SECRET = process.env.PAYPAL_CLIENT_SECRET;
-
-// const headers = {
-//   "Content-Type": "application/json",
-//   Authorization:
-//     "Basic QVNtR05CY0FhOV9ZTDNLVDJMQ0gtTWdIQURZWHVlM3hiWm9KbWdwTlBoNEtXSEpnbHlIcnVpcXNtY1V1U0w4YXA2NDFCaG04V182Vjl4SHU6RUtTX2JwSUZnQXBSd29XNkFPUFc1cjZCSDIzdnczM2VNVlhlMnFIcXBETzFBVlRoX2hIdEdSWGhfclFqbm00WHdfc0lJMW5NQy1LUzBPd2w=",
-// };
 
 export default async function paypal(orderId) {
   if (orderId) {
@@ -39,7 +32,7 @@ async function createOrder(CLIENT_ID, CLIENT_SECRET, orderId) {
         purchase_units: [
           {
             // reference_id: "d9f80740-38f0-11e8-b467-0ed5f89f718b",
-            amount: { currency_code: "USD", value: "9" },
+            amount: { currency_code: "USD", value: "9.00" },
           },
         ],
         payment_source: {

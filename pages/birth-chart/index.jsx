@@ -9,6 +9,7 @@ export default function NatralChart() {
   const { natal, adduserdata } = useForm();
   const [userData, setUserdata] = useState({});
   const router = useRouter();
+  const [loader, setLoader] = useState(false);
 
   useEffect(() => {
     if (natal) {
@@ -17,7 +18,9 @@ export default function NatralChart() {
   }, [natal]);
 
   const handleData = (data) => {
+    setLoader(true);
     adduserdata({ natal: data });
+    setLoader(false);
     router.push("/birth-chart/report");
   };
 
@@ -43,11 +46,12 @@ export default function NatralChart() {
 
   return (
     <div className="bg-secondary dark:bg-dark items-center  flex flex-col  gap-3 md:gap-10">
-      <div className="max-w-4xl w-full flex justify-end py-4 mx-auto px-5">
+      {/* <div className="max-w-4xl w-full flex justify-end py-4 mx-auto px-5">
         <DarkModeSwitcher />
-      </div>
+      </div> */}
       <div>
         <CommonForm
+          loader={loader}
           userData={userData}
           jsonData={staticData}
           handleData={handleData}
