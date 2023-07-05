@@ -1,29 +1,33 @@
-// const SEND_GRID =
-//   "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";
+import Mailjet from "node-mailjet";
 
-const SEND_GRID_ASTROPAGES =
-  "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";
+export default async function sendEmail(req, res) {
+  const mailjet = Mailjet.apiConnect(
+    process.env.MAILERJET_API_KEY,
+    process.env.MAILERJET_API_SECRET
+  );
 
-export default async function Email(req, res) {
-  const sgMail = require("@sendgrid/mail");
-  sgMail.setApiKey(SEND_GRID_ASTROPAGES);
-  const msg = {
-    to: "dharmik.rathod@vedicrishiastro.com", // Change to your recipient
-    from: "dharmik.rathod@vedicrishiastro.com", // Change to your verified sender
-    subject: "Sending with SendGrid is Fun",
-    text: "and easy to do anywhere, even with Node.js",
-    html: "<strong>and easy to do anywhere, even with Node.js</strong>",
-  };
-  sgMail
-    .send(msg)
-    .then(() => {
-      console.log("Email sent");
-    })
-    .catch((error) => {
-      console.error(error);
-    });
-
-  return {
-    mail_response: "success",
-  };
+  const request = mailjet.post("send", { version: "v3.1" }).request({
+    Messages: [
+      {
+        From: {
+          Email: "dharmik.rathod@vedicrishiastro.com",
+          Name: "Dharmik",
+        },
+        To: [
+          {
+            Email: "rathoddharmik9@gmail.com",
+            Name: "makka",
+          },
+        ],
+        // Cc: cc ? cc.map((email) => ({ Email: email })) : [],
+        // Bcc: bcc ? bcc.map((email) => ({ Email: email })) : [],
+        Subject: "My first Mailjet Email!",
+        TextPart: "Greetings from Mailjet!",
+        HTMLPart:
+          '<h3>Dear passenger 1, welcome to <a href="https://www.mailjet.com/">Mailjet</a>!</h3><br />May the delivery force be with you!',
+      },
+    ],
+  });
+  const result = await request;
+  return res.json(result.body);
 }

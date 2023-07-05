@@ -1,6 +1,6 @@
-import sendEmail from "@/components/backend/email";
-import paypal from "@/components/backend/paypal";
-import { generatePDF } from "@/components/backend/pdfGenerate";
+import sendEmail from "../../components/backend/email";
+import paypal from "../../components/backend/paypal";
+import { generatePDF } from "../../components/backend/pdfGenerate";
 import {
   getPages,
   getTableSchema,
@@ -47,44 +47,43 @@ export default async function XataIntegrate(req, res) {
           url: payment.links[1].href,
         };
         break;
+
       case "SEND_EMAIL":
         order_id = body.order_id;
         const getOrderData = await getPages(order_id, TABLE_NAME, DB_NAME);
-        //console.log(order_id, getOrderData);
-
         if (getOrderData.length > 0) {
-          // if (
-          //   getOrderData[getOrderData.length - 1]?.payment_status == "success"
-          // ) {
-          //   response = {
-          //     status: false,
-          //     msg: "Mail already send",
-          //   };
-          //   break;
-          // } else {
-          const generate = await generatePDF(
-            getOrderData[getOrderData.length - 1]?.user_data
-          );
-          const mail = await sendEmail({
-            order_id,
-            email_id: getOrderData[getOrderData.length - 1]?.email_id,
-            pdf_url: generate?.pdf_url,
-          });
-          const updateSuccessXataEntry = await updatePageById(
-            order_id,
-            DB_NAME,
-            TABLE_NAME,
-            {
-              payment_status: "success",
-            }
-          );
-          response = {
-            status: true,
-            ...generate,
-            ...mail,
-            ...updateSuccessXataEntry,
-          };
-          // }
+          if (
+            getOrderData[getOrderData.length - 1]?.payment_status == "success"
+          ) {
+            response = {
+              status: false,
+              msg: "Mail already send",
+            };
+            break;
+          } else {
+            const generate = await generatePDF(
+              getOrderData[getOrderData.length - 1]?.user_data
+            );
+            const mail = await sendEmail({
+              order_id,
+              email_id: getOrderData[getOrderData.length - 1]?.email_id,
+              pdf_url: generate?.pdf_url,
+            });
+            const updateSuccessXataEntry = await updatePageById(
+              order_id,
+              DB_NAME,
+              TABLE_NAME,
+              {
+                payment_status: "success",
+              }
+            );
+            response = {
+              status: true,
+              ...generate,
+              ...mail,
+              ...updateSuccessXataEntry,
+            };
+          }
         } else {
           response = {
             status: false,
