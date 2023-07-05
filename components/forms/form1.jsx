@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import { Error } from "../utils/error";
 import { FetchApi } from "../utils/fetchAPI";
+import { LoginLoader } from "../utils/loader";
 const style = require("../../styles/Input.module.css");
 const DynamicSample = dynamic(() => import("../forms/typehead"), {
   loading: () => "",
