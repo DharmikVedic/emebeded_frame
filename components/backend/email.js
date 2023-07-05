@@ -41,8 +41,8 @@ export default async function sendEmail(data) {
     Messages: [
       {
         From: {
-          Email: "dharmik.rathod@vedicrishiastro.com",
-          Name: "Dharmik",
+          Email: "hello@carollafurno.com",
+          Name: "Carollafurno",
         },
         To: [
           {
